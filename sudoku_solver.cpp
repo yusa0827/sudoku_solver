@@ -5,6 +5,10 @@
 #include <thread>
 #include "sudoku.h"
 
+// #ifndef DEBUG_SUDOKU
+// #define DEBUG_SUDOKU
+// #endif
+
 /*
 ・数独の辞書数をvector型にする
 ・クラスをポインタ型にする、使用したらメモリを消去　
@@ -15,8 +19,12 @@
 
 int main()
 {
+	std::cout << "start sudoku solver" << std::endl;
+
+#ifdef DEBUG_SUDOKU
+
 	//初期化
-	int init_s[10][10] = { 0 };
+	uint8_t init_s[10][10] = { 0 };
 	//初期化 辞書_1
 	//init_s[1][8] = 8;
 	//init_s[1][9] = 7;
@@ -167,3 +175,9 @@ int main()
 		delete sudoku_i_2;//メモリ開放
 
 	}
+
+#endif
+
+}
+
+

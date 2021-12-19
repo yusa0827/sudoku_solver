@@ -1,6 +1,12 @@
 #include "sudoku.h"
 
 
+// #ifndef DEBUG_SUDOKU
+// #define DEBUG_SUDOKU
+// #endif
+
+#ifdef DEBUG_SUDOKU
+
 //初期値をクラスのメンバー変数に代入
 void SUDOKU_::insert_init_(int init_s[10][10]) {
 	//横
@@ -591,3 +597,5 @@ void SUDOKU_::make_dictionary() {
 
 	}
 }
+
+#endif

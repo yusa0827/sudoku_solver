@@ -5,6 +5,10 @@
 #include <vector>
 #include <thread>
 
+#ifdef DEBUG_SUDOKU
+// #define DEBUG_SUDOKU
+#endif
+
 //数独の解法用のクラス
 class SUDOKU_ {
 
