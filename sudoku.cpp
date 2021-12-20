@@ -5,8 +5,6 @@
 // #define DEBUG_SUDOKU
 // #endif
 
-#ifdef DEBUG_SUDOKU
-
 //初期値をクラスのメンバー変数に代入
 void SUDOKU_::insert_init_(int init_s[10][10]) {
 	//横
@@ -157,8 +155,7 @@ void SUDOKU_::MT_nth_single_shot_() {
 			//指定した初期値
 			if (s[start_tate][start_yoko] != init_value_from_class) {
 
-				std::cout << "初期値　= " << init_value_from_class 
-					<< "ではなかったのでbreakします。" << std::endl;
+				std::cout << "初期値 = " << init_value_from_class << "ではなかったのでbreakします " << std::endl;
 				break;
 			}
 
@@ -598,4 +595,3 @@ void SUDOKU_::make_dictionary() {
 	}
 }
 
-#endif
