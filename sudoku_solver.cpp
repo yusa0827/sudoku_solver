@@ -21,7 +21,7 @@ int main()
 {
 	std::cout << "start sudoku solver" << std::endl;
 
-#ifdef DEBUG_SUDOKU
+// #ifdef DEBUG_SUDOKU
 
 	//初期化
 	uint8_t init_s[10][10] = { 0 };
@@ -130,8 +130,6 @@ int main()
 		//sudoku_i_1->MT_nth_single_shot_();
 		std::thread MT_2(&SUDOKU_::MT_nth_single_shot_, *sudoku_i_1);
 
-
-
 		//メインスレッド
 		//動的メモリでオブジェクトを生成　スタート値 = 1
 		SUDOKU_* sudoku_i_2 = new SUDOKU_(i * 3 + 3);
@@ -150,23 +148,20 @@ int main()
 		MT_1.join();//同期、待ち 上の処理が終わっても、MT_1が始まるのを待っている
 		MT_2.join();//同期、待ち
 
-
-
-
 		//開放される前にすべてのマスを受け取ったらブレイクする
 		if (sudoku_i->fin_sudoku_switch == true) {
-			std::cout << "スタート値 " << sudoku_i->init_value_from_class
-				<< "で終了です。" << std::endl;
+			std::cout << "start value " << sudoku_i->init_value_from_class
+				<< ", finish" << std::endl;
 			break;
 		}
 		if (sudoku_i_1->fin_sudoku_switch == true) {
-			std::cout << "スタート値 " << sudoku_i->init_value_from_class
-				<< "で終了です。" << std::endl;
+			std::cout << "start value " << sudoku_i->init_value_from_class
+				<< ", finish" << std::endl;
 			break;
 		}
 		if (sudoku_i_2->fin_sudoku_switch == true) {
-			std::cout << "スタート値 " << sudoku_i->init_value_from_class
-				<< "で終了です。" << std::endl;
+			std::cout << "start value " << sudoku_i->init_value_from_class
+				<< ", finish" << std::endl;
 			break;
 		}
 
@@ -175,8 +170,6 @@ int main()
 		delete sudoku_i_2;//メモリ開放
 
 	}
-
-#endif
 
 }
 

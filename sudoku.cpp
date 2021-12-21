@@ -6,7 +6,7 @@
 // #endif
 
 //初期値をクラスのメンバー変数に代入
-void SUDOKU_::insert_init_(int init_s[10][10]) {
+void SUDOKU_::insert_init_(uint8_t init_s[10][10]) {
 	//横
 	for (int j = 1; j <= 9; j++) {
 		//縦
@@ -60,8 +60,6 @@ void SUDOKU_::MT_nth_single_shot_() {
 		*/
 		SUDOKU_::check_row_and_col_and_area();
 
-
-		
 		//現在のマスs[][]が9を超えたら
 		if (s[tate][yoko] > 9) {
 
@@ -95,12 +93,9 @@ void SUDOKU_::MT_nth_single_shot_() {
 					//1ステップ戻った値を文字列とする 仮に戻ってみる
 					s_tate_yoko_ = "s[" + std::to_string(tate) + "][" + std::to_string(yoko) + "]";
 
-
-
 					//　1ステップ戻った値を文字列が定数ではないかをチェックする
 					if (s_tate_yoko_ == key_[i]) {
 						jisyo_check = false;
-
 
 						if (yoko == 1) {//s[tate][1]のとき、下に移動s[tate - 1][9]
 							tate = tate - 1;
@@ -109,7 +104,6 @@ void SUDOKU_::MT_nth_single_shot_() {
 						else {
 							yoko = yoko - 1;
 						}
-
 
 						incliment = 0;
 						break;//一致したら抜ける
@@ -129,9 +123,7 @@ void SUDOKU_::MT_nth_single_shot_() {
 
 			}
 
-
 		}
-
 		
 		//数独のルールに違反していいなかったらtrue
 		if (maybe_fix == true) {
@@ -142,10 +134,9 @@ void SUDOKU_::MT_nth_single_shot_() {
 
 			//trueで帰ってきたら、表作成
 			if (repeat_times % 1000000 == 0) {
-				std::cout << "試行回数 = " << repeat_times << std::endl;
+				std::cout << "trail time = " << repeat_times << std::endl;
 
-				std::cout << "init_value_from_class　= " << init_value_from_class << std::endl;
-
+				std::cout << "init_value_from_class = " << init_value_from_class << std::endl;
 				
 				//表作成
 				SUDOKU_::display_table(sleep_from_class);
@@ -155,24 +146,20 @@ void SUDOKU_::MT_nth_single_shot_() {
 			//指定した初期値
 			if (s[start_tate][start_yoko] != init_value_from_class) {
 
-				std::cout << "初期値 = " << init_value_from_class << "ではなかったのでbreakします " << std::endl;
+				std::cout << "because initial value = " << init_value_from_class << "is not, break." << std::endl;
 				break;
 			}
 
-
-
-
 			//chekerで全てに該当しなく、すべて埋まったら成功？　終了
 			if (yoko == 9 && tate == 9) {
-				std::cout <<"初期値　= " << init_value_from_class 
-					<< "すべてのマスが埋まりました." << std::endl;
-				std::cout << "処理を終了します." << std::endl;
+				std::cout <<"initial value = " << init_value_from_class 
+					<< "complete sudoku" << std::endl;
+				std::cout << "finish sudoku_solver app" << std::endl;
 				SUDOKU_::display_table(sleep_from_class);//表作成
 				
 				fin_sudoku_switch = true;// trueになると、メイン関数を終了させる
 				break;
 			}
-
 
 			//隣にスキップする
 			++yoko;//s[tate][yoko] → s[tate][yoko + 1]
@@ -185,7 +172,6 @@ void SUDOKU_::MT_nth_single_shot_() {
 
 			//スキップしたマスが辞書にあるかを確認
 			for (int i = 0; i < key_num; i++) {
-
 
 				// 辞書のために文字列を初期化
 				s_tate_yoko_ = "s[" + std::to_string(tate) + "][" + std::to_string(yoko) + "]";
@@ -200,7 +186,6 @@ void SUDOKU_::MT_nth_single_shot_() {
 
 					}
 
-
 				}
 
 				//定数ではなかった、つまり0だった場合は1にする
@@ -208,16 +193,13 @@ void SUDOKU_::MT_nth_single_shot_() {
 					s[tate][yoko] = 1;//次のステップへの初期化　定数の場合は初期化をしてはいけない
 				}
 
-
 			}
 
 		}
 
-
 	}
 
 }
-
 
 
 void SUDOKU_::check_row_and_col_and_area() {
@@ -288,9 +270,6 @@ void SUDOKU_::check_row_and_col_and_area() {
 			}
 		}
 	}
-
-
-
 }
 
 
@@ -307,7 +286,6 @@ void SUDOKU_::start_multi_thread_() {
 
 		//値がこれ以上上がらないことをブールで表現
 		maybe_fix = true;//条件という試練に会いながらも、trueで帰ってきたら、break
-
 
 		//*******************************************************特殊
 		//辞書にあるということは、今後の処理をスキップしないといけない
@@ -339,18 +317,14 @@ void SUDOKU_::start_multi_thread_() {
 		*/
 		SUDOKU_::check_row_and_col_and_area();
 
-
 		//s[][]に加算するため、下記のフォルスカウンターでは無意味
 		if (s[tate][yoko] > 9) {
-
 			
 			maybe_fix = false;//まだあがる可能性があります
 
 			bool jisyo_check = true;
 
-
 			s[tate][yoko] = 0;//①初期化
-
 
 			//繰り上げ
 			if (yoko == 1) {//s[tate][1](左端)のとき、下に移動s[tate - 1][9]
@@ -362,9 +336,7 @@ void SUDOKU_::start_multi_thread_() {
 				yoko = yoko - 1;
 			}
 
-
 			//移動したセルが定数だったら、もう一度同じ処理　移動
-
 
 			int incliment = 0;
 			for (;;) {
@@ -374,7 +346,6 @@ void SUDOKU_::start_multi_thread_() {
 
 					//1ステップ戻った値を文字列とする 仮に戻ってみる
 					s_tate_yoko_ = "s[" + std::to_string(tate) + "][" + std::to_string(yoko) + "]";
-
 
 					//　1ステップ戻った値を文字列が定数ではないかをチェックする
 					if (s_tate_yoko_ == key_[i]) {
@@ -389,7 +360,6 @@ void SUDOKU_::start_multi_thread_() {
 						else {
 							yoko = yoko - 1;
 						}
-
 
 						incliment = 0;
 						break;//一致したら抜ける
@@ -407,9 +377,7 @@ void SUDOKU_::start_multi_thread_() {
 					break;//一致したら抜ける
 				}
 
-
 			}
-
 
 		}
 
@@ -422,7 +390,7 @@ void SUDOKU_::start_multi_thread_() {
 
 			//trueで帰ってきたら、表作成
 			if (repeat_times % 1000000 == 0) {
-				std::cout << "試行回数 = " << repeat_times << std::endl;
+				std::cout << "trail time = " << repeat_times << std::endl;
 				SUDOKU_::display_table(sleep_from_class);//表作成
 			}
 
@@ -430,7 +398,7 @@ void SUDOKU_::start_multi_thread_() {
 			if (yoko == 9 && tate == 9) {
 				std::cout << "checkerでも問題なく、すべてのマスが埋まりました." << std::endl;
 				SUDOKU_::display_table(sleep_from_class);//表作成
-				std::cout << "処理を終了します." << std::endl;
+				std::cout << "finish sudoku_solver app" << std::endl;
 				fin_sudoku_switch = true;// trueになると、メイン関数を終了させる
 				break;
 			}
@@ -443,7 +411,6 @@ void SUDOKU_::start_multi_thread_() {
 				yoko = 1;//横を初期化
 
 			}
-
 
 			//スキップしたマスが辞書にあるかを確認
 			for (int i = 0; i < key_num; i++) {
@@ -461,7 +428,6 @@ void SUDOKU_::start_multi_thread_() {
 
 					}
 
-
 				}
 
 				//定数ではなかった、つまり0だった場合は1にする
@@ -469,13 +435,12 @@ void SUDOKU_::start_multi_thread_() {
 					s[tate][yoko] = 1;//次のステップへの初期化　定数の場合は初期化をしてはいけない
 				}
 
-
 			}
 
 		}
 
-
 	}
+
 }
 
 
@@ -502,13 +467,13 @@ void SUDOKU_::detect_start_position() {
 		}
 	}
 	
-	std::cout << "初めに代入できるマス " 
+	std::cout << "first position " 
 		<< "s[" << start_tate <<"]["<< start_yoko <<"] = " << init_value_from_class << std::endl;
-	
+
 }
 
 //表の表示
-void SUDOKU_::display_table(int sleep_) {
+void SUDOKU_::display_table(uint8_t sleep_) {
 	//クラスのprivate変数に代入
 	sleep_from_class = sleep_;
 	
@@ -582,6 +547,7 @@ void SUDOKU_::display_table(int sleep_) {
 void SUDOKU_::make_dictionary() {
 
 	for (int i = 1; i <= 9; i++) {
+
 		for (int j = 1; j <= 9; j++) {
 
 			//初期値の0でなかったら辞書(定数)に保存
@@ -589,9 +555,7 @@ void SUDOKU_::make_dictionary() {
 				key_[++key_num] = "s[" + std::to_string(i) + "][" + std::to_string(j) + "]";
 
 			}
-
 		}
-
 	}
 }
 

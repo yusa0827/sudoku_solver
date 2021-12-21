@@ -39,16 +39,16 @@ public://メインで使う変数や関数たち
 	bool fin_sudoku_switch = false;
 	
 	//  コンストラクタ スタート位置の値を代入している
-	SUDOKU_(int start_number) {
+	SUDOKU_(uint8_t start_number) {
 		init_value_from_class = start_number;
 	};
 	   	
 	//辞書を代入　定数を代入
-	void insert_init_(int init_s[10][10]);
+	void insert_init_(uint8_t init_s[10][10]);
 	//辞書作り
 	void make_dictionary();
 	//表を表示 表示時間は0.2秒
-	void display_table(int sleep_ = 200);
+	void display_table(uint8_t sleep_ = 200);
 	//初期位置ポジションをクラスに代入した初期値で探査
 	void detect_start_position();
 	//探査開始　縦、横、各(3*3)エリアをチェック
