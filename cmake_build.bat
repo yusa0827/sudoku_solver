@@ -12,3 +12,5 @@ cmake ..
 cmake --build .
 
 cd ..
+
+cp build\Debug\a.exe.exe a.exe
