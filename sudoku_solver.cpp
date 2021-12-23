@@ -20,15 +20,15 @@
 /*
 ■ 数独票のエリア定義
 + - - - + - - - + - - - +
-+ area  + area  + area  + 
++ block + block + block + 
 +   0   +   1   +   3   + 
 +       +       +       + 
 + - - - + - - - + - - - +
-+ area  + area  + area  + 
++ block + block + block + 
 +   4   +   5   +   6   + 
 +       +       +       + 
 + - - - + - - - + - - - +
-+ area  + area  + area  + 
++ block + block + block + 
 +   6   +   7   +   8   + 
 +       +       +       + 
 + - - - + - - - + - - - + 
