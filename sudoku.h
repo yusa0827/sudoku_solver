@@ -9,6 +9,13 @@
 // #define DEBUG_SUDOKU
 #endif
 
+#define SUDOKU_MAX_COL      9
+#define SUDOKU_MAX_R0W      9
+#define SUDOKU_FIRST_RANGE  2
+#define SUDOKU_MIDDLE_RANGE 5
+#define SUDOKU_LAST_RANGE   8
+#define SUDOKU_SPLIT        3
+
 //数独の解法用のクラス
 class SUDOKU_ {
 

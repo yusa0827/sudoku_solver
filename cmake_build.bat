@@ -13,4 +13,6 @@ cmake --build .
 
 cd ..
 
-cp build\Debug\a.exe.exe a.exe
+copy build\Debug\a.exe.exe a.exe
+
+a.exe
